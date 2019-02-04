@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  include HighVoltage::StaticPage
+
   def index
     authorize :page
 

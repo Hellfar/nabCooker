@@ -1,8 +1,13 @@
-h2 = @meal.name
+h2 = @meal.name + ((@meal.favorite? current_user) ? " ⋆" : "")
 em = @meal.category
 p
   = @meal.desc
 
 = link_to "Validate", action: :validate
+'|
+- if @meal.favorite? current_user
+  = link_to "Un-Favorite", action: :favorite
+- else
+  = link_to "Favorite", action: :favorite
 '|
 =< link_to 'Back', root_path

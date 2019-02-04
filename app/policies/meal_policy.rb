@@ -17,6 +17,10 @@ class MealPolicy < ApplicationPolicy
     user
   end
 
+  def favorite?
+    user
+  end
+
   def create?
     false
   end

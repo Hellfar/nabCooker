@@ -8,6 +8,6 @@ table.table.table-hover
   tbody
     - @meals.each do |meal|
       tr data-link="#{meal_path(meal)}"
-        td = meal.name
+        td = meal.name + ((meal.favorite? current_user) ? " ⋆" : "")
         td = meal.category
         td = meal.desc

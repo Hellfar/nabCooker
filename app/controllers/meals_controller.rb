@@ -1,7 +1,7 @@
 require 'rest-client'
 
 class MealsController < ApplicationController
-  before_action :set_meal, only: [:show, :validate, :edit, :update, :destroy]
+  before_action :set_meal, only: [:show, :validate, :favorite, :edit, :update, :destroy]
 
   # GET /meals
   # GET /meals.json
@@ -24,7 +24,18 @@ class MealsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @meal, notice: result }
-      format.json { render :show, status: :created, location: @meal }
+      format.json { render :show, status: :validated, location: @meal }
+    end
+  end
+
+  def favorite
+    authorize @meal
+
+    current_user.update meal_id: (@meal.favorite? current_user) ? nil : @meal.id
+
+    respond_to do |format|
+      format.html { redirect_to @meal, notice: (@meal.favorite? current_user) ? "This meal is now your favorite" : "This meal is now not your favorite" }
+      format.json { render :show, status: :favorite, location: @meal }
     end
   end
 

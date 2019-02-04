@@ -1,0 +1,13 @@
+table.table.table-hover
+  thead
+    tr
+      th Name
+      th Category
+      th Desc
+
+  tbody
+    - @diets.each do |diet|
+      tr data-link="#{unselect_diet_meals_path()}"
+        td = diet.name + ((diet.favorite? current_user) ? " ⋆" : "")
+        td = diet.category
+        td = diet.desc

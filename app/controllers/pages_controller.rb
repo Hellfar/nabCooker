@@ -8,6 +8,7 @@ class PagesController < ApplicationController
       authorize Meal
 
       @meals = Meal.all
+      @diets = @meals.select(:category)
     #   redirect_to dashboard_path
     end
   end

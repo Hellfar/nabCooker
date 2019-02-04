@@ -21,6 +21,14 @@ class MealPolicy < ApplicationPolicy
     user
   end
 
+  def select_diet?
+    user
+  end
+
+  def unselect_diet?
+    user
+  end
+
   def create?
     false
   end

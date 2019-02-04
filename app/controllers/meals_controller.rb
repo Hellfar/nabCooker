@@ -1,5 +1,7 @@
+require 'rest-client'
+
 class MealsController < ApplicationController
-  before_action :set_meal, only: [:show, :edit, :update, :destroy]
+  before_action :set_meal, only: [:show, :validate, :edit, :update, :destroy]
 
   # GET /meals
   # GET /meals.json
@@ -13,6 +15,17 @@ class MealsController < ApplicationController
   # GET /meals/1.json
   def show
     authorize @meal
+  end
+
+  def validate
+    authorize @meal
+
+    result = RestClient.get "https://reqres.in/api/unknown/2"
+
+    respond_to do |format|
+      format.html { redirect_to @meal, notice: result }
+      format.json { render :show, status: :created, location: @meal }
+    end
   end
 
   # GET /meals/new

@@ -13,6 +13,10 @@ class MealPolicy < ApplicationPolicy
     true
   end
 
+  def validate?
+    user
+  end
+
   def create?
     false
   end

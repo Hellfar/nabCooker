@@ -1,8 +1,8 @@
-p#notice = notice
-
 h2 = @meal.name
 em = @meal.category
 p
   = @meal.desc
 
+= link_to "Validate", action: :validate
+'|
 =< link_to 'Back', root_path

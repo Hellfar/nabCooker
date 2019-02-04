@@ -99,3 +99,8 @@ gem "bootstrap_form",
     git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
     branch: "master"
 gem 'bootstrap-select-rails'
+
+
+# Others miscs
+
+gem 'rest-client'

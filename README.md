@@ -1,24 +1,59 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## System dependencies
 
-Things you may want to cover:
+```
+sudo apt-get install nginx nodejs git build-essential libffi-dev libssl-dev libreadline-dev zlib1g-dev libsqlite3-dev libpq-dev
+```
 
-* Ruby version
+## Install Ruby
 
-* System dependencies
+Do not install Ruby from your package manager, use RBEnv or RVM.
 
-* Configuration
+```
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+git clone https://github.com/maljub01/rbenv-bundle-exec.git ~/.rbenv/plugins/rbenv-bundle-exec
+source ~/.bash_profile
 
-* Database creation
+# Installe Ruby
+rbenv install 2.3.0
+rbenv global 2.3.0
+```
 
-* Database initialization
+## Application dependencies
 
-* How to run the test suite
+```
+gem install bundler --no-ri
+bundle install
+```
+## Database creation and initialization
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rake db:create
+rake db:migrate
+rake db:seed
+```
 
-* Deployment instructions
+## Local server
 
-* ...
+```
+rails server -b 0.0.0.0
+```
+
+And then access it at http://0.0.0.0:3000/
+
+## Run the test suite
+
+```
+rake
+```
+
+## Developments logs
+
+```
+tail -f log/developments.log
+```

@@ -1,0 +1,13 @@
+h1 Welcome!
+
+- if current_user
+  ul
+    li = link_to t("devise.links.profile").capitalize, edit_user_registration_path
+    li = link_to t("devise.links.sign_out").capitalize, destroy_user_session_path
+
+  p TEST
+- else
+  p Please
+  ul
+    li = link_to t("devise.links.sign_in").capitalize, new_user_session_path
+    li = link_to t("devise.links.sign_up").capitalize, new_user_registration_path

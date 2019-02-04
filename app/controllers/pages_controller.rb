@@ -4,8 +4,11 @@ class PagesController < ApplicationController
   def index
     authorize :page
 
-    # if current_user
+    if current_user
+      authorize Meal
+
+      @meals = Meal.all
     #   redirect_to dashboard_path
-    # end
+    end
   end
 end

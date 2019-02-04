@@ -5,7 +5,7 @@ h1 Welcome!
     li = link_to t("devise.links.profile").capitalize, edit_user_registration_path
     li = link_to t("devise.links.sign_out").capitalize, destroy_user_session_path
 
-  p TEST
+  = render "meals/index"
 - else
   p Please
   ul

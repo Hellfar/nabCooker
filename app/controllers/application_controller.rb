@@ -1,3 +1,12 @@
+class CurrentContext
+  attr_reader :user, :params
+
+  def initialize(user, params)
+    @user = user
+    @params = params
+  end
+end
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 

@@ -1,8 +1,10 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, record)
-    @user = user
+  def initialize(context, record)
+    @context = context
+    @user = context.user
+    @params = context.params
     @record = record
   end
 
@@ -11,7 +13,7 @@ class ApplicationPolicy
   end
 
   def show?
-    false
+    scope.where(:id => record.id).exists?
   end
 
   def create?
@@ -34,16 +36,21 @@ class ApplicationPolicy
     false
   end
 
-  class Scope
-    attr_reader :user, :scope
+  def scope
+    Pundit.policy_scope!(@context, @record.class)
+  end
 
-    def initialize(user, scope)
-      @user = user
+  class Scope
+    attr_reader :user, :params, :scope
+
+    def initialize(context, scope)
+      @user = context.user
+      @params = context.params
       @scope = scope
     end
 
     def resolve
-      scope.all
+      scope
     end
   end
 end

@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  include Pundit
+  # after_action :verify_authorized
+
   before_action :check_params
 
   rescue_from ActionController::RoutingError, with: :route_not_found
@@ -16,6 +19,11 @@ class ApplicationController < ActionController::Base
       @current_user ||= doorkeeper_token ? User.find(doorkeeper_token.resource_owner_id) : nil
     end
   end
+
+  def pundit_user
+    CurrentContext.new(current_user, params)
+  end
+
   def redirect_to_safe_place
     redirect_to(
       if request.referer and URI(request.referer).path != request.path

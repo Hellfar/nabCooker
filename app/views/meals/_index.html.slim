@@ -1,19 +1,13 @@
-table
+table.table.table-hover
   thead
     tr
       th Name
       th Category
       th Desc
-      th
-      th
-      th
 
   tbody
     - @meals.each do |meal|
-      tr
+      tr data-link="#{meal_path(meal)}"
         td = meal.name
         td = meal.category
         td = meal.desc
-        td = link_to 'Show', meal
-        td = link_to 'Edit', edit_meal_path(meal)
-        td = link_to 'Destroy', meal, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,15 +1,8 @@
 p#notice = notice
 
+h2 = @meal.name
+em = @meal.category
 p
-  strong Name:
-  = @meal.name
-p
-  strong Category:
-  = @meal.category
-p
-  strong Desc:
   = @meal.desc
 
-=> link_to 'Edit', edit_meal_path(@meal)
-'|
 =< link_to 'Back', meals_path

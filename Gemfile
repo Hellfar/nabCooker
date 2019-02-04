@@ -86,6 +86,11 @@ gem 'slim-rails'
 # Static pages at app/views/pages/
 gem 'high_voltage'
 
+# javascripts helpers
+gem 'jquery-rails'
+# Turbolinks with Jquery
+gem 'jquery-turbolinks'
+
 # styles
 gem 'font-awesome-rails'
 gem 'bootstrap', '~> 4.0.0'

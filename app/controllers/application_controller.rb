@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
   def set_current_user
     unless current_user
-      @current_user ||= doorkeeper_token ? User.find(doorkeeper_token.resource_owner_id) : nil
+      @current_user ||= nil
+      # @current_user ||= doorkeeper_token ? User.find(doorkeeper_token.resource_owner_id) : nil
     end
   end
 

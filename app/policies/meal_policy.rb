@@ -1,7 +1,11 @@
 class MealPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if @user.diet
+        scope.where category: @user.diet
+      else
+        scope.all
+      end
     end
   end
 

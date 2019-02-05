@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     if current_user
       authorize Meal
 
-      @meals = Meal.all
+      @meals = policy_scope(Meal)
       @diets = @meals.select(:category)
     #   redirect_to dashboard_path
     end
